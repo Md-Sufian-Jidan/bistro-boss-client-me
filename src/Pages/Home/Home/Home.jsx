@@ -7,6 +7,7 @@ import CallUs from "../CallUs/CallUs";
 import ChefRecommends from "../ChefRecommend/ChefRecommends";
 import FeaturedBanner from "../Featured/FeaturedBanner";
 import featureImg from '../../../assets/home/featured.jpg'
+import Reviews from "../Reviews/Reviews";
 const Home = () => {
     return (
         <div>
@@ -17,6 +18,7 @@ const Home = () => {
             <CallUs />
             <ChefRecommends />
             <FeaturedBanner featuredImg={featureImg} />
+            <Reviews />
         </div>
     );
 };

@@ -17,12 +17,6 @@ import slide5 from '../../../assets/home/slide5.jpg'
 
 
 const Category = () => {
-    // const [reviews, setReviews] = useState();
-    // useEffect(() => {
-    //     fetch("reviews.json")
-    //         .then(res => res.json())
-    //         .then(data => setReviews(data))
-    // }, [])
     return (
         <div className="my-5">
             <SectionTitle subHeading="---From 11:00am to 10:00pm---" heading="ORDER ONLINE"></SectionTitle>
