@@ -18,12 +18,12 @@ import slide4 from '../../../assets/home/slide4.jpg'
 import slide5 from '../../../assets/home/slide5.jpg'
 
 const Category = () => {
-    const [reviews, setReviews] = useState();
-    useEffect(() => {
-        fetch("reviews.json")
-            .then(res => res.json())
-            .then(data => setReviews(data))
-    }, [])
+    // const [reviews, setReviews] = useState();
+    // useEffect(() => {
+    //     fetch("reviews.json")
+    //         .then(res => res.json())
+    //         .then(data => setReviews(data))
+    // }, [])
     return (
         <div className="my-5">
             <SectionTitle subHeading="---From 11:00am to 10:00pm---" heading="ORDER ONLINE"></SectionTitle>
@@ -39,22 +39,23 @@ const Category = () => {
             >
                 <SwiperSlide>
                     <img src={slide1} alt="" />
-                    <p className="text-3xl absolute bottom-3 left-20">Pizzas</p>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src={slide2} alt="" />
-                    <p className="text-3xl absolute bottom-3 left-20">Soups</p>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src={slide3} alt="" />
-                    <p className="text-3xl absolute bottom-3 left-20">Desserts</p>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src={slide4} alt="" />
                     <p className="text-3xl absolute bottom-3 left-20">Salads</p>
                 </SwiperSlide>
                 <SwiperSlide>
+                    <img src={slide2} alt="" />
+                    <p className="text-3xl absolute bottom-3 left-20">Pizzas</p>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src={slide3} alt="" />
+                    <p className="text-3xl absolute bottom-3 left-20">Soups</p>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src={slide4} alt="" />
+                    <p className="text-3xl absolute bottom-3 left-20">Desserts</p>
+                </SwiperSlide>
+                <SwiperSlide>
                     <img src={slide5} alt="" />
+                    <p className="text-3xl absolute bottom-3 left-20">Salads</p>
                 </SwiperSlide>
             </Swiper>
         </div>
