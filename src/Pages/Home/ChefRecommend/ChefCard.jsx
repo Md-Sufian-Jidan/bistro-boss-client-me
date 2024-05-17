@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 
 const ChefCard = ({ item }) => {
-    const { image, name, recipe, price } = item;
+    const { image, name, recipe } = item;
 
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
@@ -17,5 +18,7 @@ const ChefCard = ({ item }) => {
         </div>
     );
 };
-
+ChefCard.propTypes = {
+    item: PropTypes.object
+};
 export default ChefCard;
