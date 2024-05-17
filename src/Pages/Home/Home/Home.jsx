@@ -13,7 +13,7 @@ const Home = () => {
         <div>
             <Banner />
             <Category />
-            <Cover img={homeCover} title="Bistro Boss" description="Welcome to Bistro Boss, where culinary excellence meets cozy ambiance. Indulge in our chef's finest creations, crafted with the freshest ingredients. Join us for an unforgettable dining experience today!" />
+            <Cover img={homeCover} bgColor="#ffffff" title="Bistro Boss" description="Welcome to Bistro Boss, where culinary excellence meets cozy ambiance. Indulge in our chef's finest creations, crafted with the freshest ingredients. Join us for an unforgettable dining experience today!" />
             <FromOurMenu />
             <CallUs />
             <ChefRecommends />

@@ -20,6 +20,6 @@ const FeaturedBanner = ({ featuredImg }) => {
 };
 
 FeaturedBanner.propTypes = {
-    featuredImg: PropTypes.object
+    featuredImg: PropTypes.string
 }
 export default FeaturedBanner;
