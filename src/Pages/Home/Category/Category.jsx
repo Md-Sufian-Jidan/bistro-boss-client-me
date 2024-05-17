@@ -35,13 +35,27 @@ const Category = () => {
                     clickable: true,
                 }}
                 modules={[FreeMode, Pagination]}
-                className="mySwiper my-5"
+                className="mySwiper my-5 relative"
             >
-                <SwiperSlide><img src={slide1} alt="" /></SwiperSlide>
-                <SwiperSlide><img src={slide2} alt="" /></SwiperSlide>
-                <SwiperSlide><img src={slide3} alt="" /></SwiperSlide>
-                <SwiperSlide><img src={slide4} alt="" /></SwiperSlide>
-                <SwiperSlide><img src={slide5} alt="" /></SwiperSlide>
+                <SwiperSlide>
+                    <img src={slide1} alt="" />
+                    <p className="text-3xl absolute bottom-3 left-20">Pizzas</p>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src={slide2} alt="" />
+                    <p className="text-3xl absolute bottom-3 left-20">Soups</p>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src={slide3} alt="" />
+                    <p className="text-3xl absolute bottom-3 left-20">Desserts</p>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src={slide4} alt="" />
+                    <p className="text-3xl absolute bottom-3 left-20">Salads</p>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src={slide5} alt="" />
+                </SwiperSlide>
             </Swiper>
         </div>
     );
