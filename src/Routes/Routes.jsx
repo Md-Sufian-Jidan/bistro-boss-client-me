@@ -7,6 +7,8 @@ import SignUp from "../Pages/Shared/SignUp/SignUp";
 import Login from "../Pages/Shared/Login/Login";
 import Shop from "../Pages/Home/Shop/Shop";
 import Contact from "../Pages/Contact/Contact";
+import Dashboard from "../Layout/Dashboard";
+import Cart from "../Pages/Dashboard/Cart/Cart";
 // import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
@@ -40,6 +42,18 @@ const router = createBrowserRouter([
     {
         path: '/login',
         element: <Login />
+    },
+    {
+        path: 'dashboard',
+        element: <Dashboard />,
+        children: [
+            // /dashboard/my-cart
+            {
+                // index: true,
+                path: 'my-cart',
+                element: <Cart />
+            }
+        ]
     }
 ])
 

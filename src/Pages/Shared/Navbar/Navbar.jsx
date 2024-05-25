@@ -7,7 +7,7 @@ import useCart from "../../../Hooks/useCart";
 
 const Navbar = () => {
     const [carts] = useCart();
-    console.log(carts);
+    // console.log(carts);
     const { user, logout } = useAuth();
     const handleLogout = () => {
         logout()
@@ -28,7 +28,7 @@ const Navbar = () => {
         <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2" : "p-3 mr-2"} to="/dashboard">
             <button className="flex items-center">
                 <FaCartArrowDown size={20} />
-                <div className="badge badge-secondary">+{carts?.length}</div>
+                <div className="badge badge-outline bg-[#ffadad]">+{carts?.length}</div>
             </button>
         </NavLink>
     </>
@@ -44,7 +44,7 @@ const Navbar = () => {
                         {navLinks}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">Jj <br />Restaurant</a>
+                <Link to="/" className="btn btn-ghost text-xl">Jj <br />Restaurant</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

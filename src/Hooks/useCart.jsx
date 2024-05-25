@@ -7,10 +7,10 @@ const useCart = () => {
     const { data: carts = [], refetch } = useQuery({
         queryKey: ["carts"],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/carts`);
+            const {data} = await axiosSecure.get(`/carts`);
             // const res = axios.get(`${import.meta.env.VITE_API_URL}/carts`)
-            console.log(res.data);
-            return res.data;
+            // console.log(data);
+            return data;
         }
     })
     return [carts, refetch];
