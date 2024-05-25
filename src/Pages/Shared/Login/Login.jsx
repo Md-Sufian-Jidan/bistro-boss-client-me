@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import sign from '../../../assets/others/authentication1.png'
 import toast from 'react-hot-toast';
 import useAuth from '../../../Hooks/useAuth';
@@ -12,6 +12,8 @@ const Login = () => {
     const { loginUser, googleLoginUser, githubLoginUser } = useAuth();
     const navigate = useNavigate();
     const [disabled, setDisabled] = useState(true);
+    const location = useLocation();
+    const from = location.pathname || '/';
 
     // captcha 
     useEffect(() => {
@@ -28,7 +30,7 @@ const Login = () => {
             .then((res) => {
                 console.log(res);
                 toast.success('User Login Successfully');
-                navigate('/');
+                navigate(from);
             })
             .catch((err) => {
                 toast.error(err.message);
@@ -40,7 +42,7 @@ const Login = () => {
         googleLoginUser()
             .then(() => {
                 toast.success("User login Successfully");
-                navigate('/');
+                navigate(from);
             })
             .catch((err) => {
                 toast.error(err.message);
@@ -51,7 +53,7 @@ const Login = () => {
         githubLoginUser()
             .then(() => {
                 toast.success("User login Successfully");
-                navigate('/');
+                navigate(from);
             })
             .catch((err) => {
                 toast.error(err.message);

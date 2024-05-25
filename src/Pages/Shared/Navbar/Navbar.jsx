@@ -3,8 +3,11 @@ import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import profile from '../../../assets/others/profile.png'
 import { FaCartArrowDown } from "react-icons/fa";
+import useCart from "../../../Hooks/useCart";
 
 const Navbar = () => {
+    const [carts] = useCart();
+    console.log(carts);
     const { user, logout } = useAuth();
     const handleLogout = () => {
         logout()
@@ -25,7 +28,7 @@ const Navbar = () => {
         <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2" : "p-3 mr-2"} to="/dashboard">
             <button className="flex items-center">
                 <FaCartArrowDown size={20} />
-                <div className="badge badge-secondary">+</div>
+                <div className="badge badge-secondary">+{carts?.length}</div>
             </button>
         </NavLink>
     </>
@@ -59,7 +62,7 @@ const Navbar = () => {
                 {
                     user && <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar mr-2">
                         <div className="w-16 rounded-full">
-                            <img title={user?.email} alt="User Profile Pic" src={user ? user?.photoURL : profile} />
+                            <img title={user?.displayName} alt="User Profile Pic" src={user ? user?.photoURL : profile} />
                         </div>
                     </div>
                 }
