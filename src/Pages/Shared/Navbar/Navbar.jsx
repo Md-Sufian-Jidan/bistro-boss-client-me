@@ -1,25 +1,68 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
+import toast from "react-hot-toast";
+import profile from '../../../assets/others/profile.png'
+import { FaCartArrowDown } from "react-icons/fa";
 
 const Navbar = () => {
+    const { user, logout } = useAuth();
+    const handleLogout = () => {
+        logout()
+            .then(() => {
+                toast.success('User logout successfully');
+            })
+            .catch((err) => {
+                toast.error(err.message);
+            });
+    };
+    const navLinks = <>
+        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2" : "p-3 mr-2"} to="/">Home</NavLink>
+        {/* TODO: CREATE THIS ROUTE AND ADD IN HOME PAGE */}
+        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2" : "p-3 mr-2"} to="/dashboard">Dashboard</NavLink>
+        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2" : "p-3 mr-2"} to="/contact">Contact</NavLink>
+        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2" : "p-3 mr-2"} to="/menu">Our Menu</NavLink>
+        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2" : "p-3 mr-2"} to="/shop/salad">Our shop</NavLink>
+        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2" : "p-3 mr-2"} to="/dashboard">
+            <button className="flex items-center">
+                <FaCartArrowDown size={20} />
+                <div className="badge badge-secondary">+</div>
+            </button>
+        </NavLink>
+    </>
+
     return (
-        <div className="navbar bg-base-100 fixed max-w-7xl mx-auto z-50">
-            <div className="flex-1">
-                <a className="btn btn-ghost text-xl">Foode</a>
-            </div>
-            <div className="flex-none">
-                <NavLink className="btn mr-2">Home</NavLink>
-                <div className="dropdown dropdown-end">
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                        </div>
+        <div className="navbar fixed bg-opacity-50 rounded-b-xl max-w-7xl z-50 mx-auto bg-purple-300">
+            <div className="navbar-start">
+                <div className="dropdown">
+                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><NavLink to="/">Home</NavLink></li>
-                        <li><NavLink to="/menu">Our Menu</NavLink></li>
+                        {navLinks}
                     </ul>
                 </div>
-                <button className="btn btn-outline border-t-4 hover:scale-110 ml-2">Logout</button>
+                <a className="btn btn-ghost text-xl">Jj <br />Restaurant</a>
+            </div>
+            <div className="navbar-center hidden lg:flex">
+                <ul className="menu menu-horizontal px-1">
+                    {navLinks}
+                </ul>
+            </div>
+            <div className="navbar-end">
+                {
+                    user ?
+                        <Link onClick={handleLogout} className="text-lg hover:cursor-pointer hover:underline text-red-400 mx-3">sign out</Link>
+                        :
+                        <Link to="/login" className="btn rounded-full bg-[#f0f5ac]">Login</Link>
+
+                }
+                {
+                    user && <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar mr-2">
+                        <div className="w-16 rounded-full">
+                            <img title={user?.email} alt="User Profile Pic" src={user ? user?.photoURL : profile} />
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     );

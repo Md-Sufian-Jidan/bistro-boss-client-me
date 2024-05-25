@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 import PropTypes from 'prop-types'
 const FeaturedBanner = ({ featuredImg }) => {
@@ -12,7 +13,7 @@ const FeaturedBanner = ({ featuredImg }) => {
                     <p>Aug 20, 2024</p>
                     <p className="uppercase">Where Can i get some?</p>
                     <p>Discover a symphony of flavors in every dish. Our menu offers a delectable selection of gourmet delights, from succulent appetizers to exquisite main courses and decadent desserts. Each plate is a masterpiece, meticulously crafted to tantalize your taste buds. Dive into our culinary offerings and savor the extraordinary today!</p>
-                    <button className="btn btn-outline border-0 border-b-4 mt-4">Order Now</button>
+                    <Link to="/shop" className="btn btn-outline border-0 border-b-4 mt-4">Order Now</Link>
                 </div>
             </div>
         </div>

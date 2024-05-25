@@ -3,7 +3,7 @@ import MenuItem from "../../Shared/MenuItem/MenuItem";
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 
 const FromOurMenu = () => {
-    const { menu } = useMenu();
+    const [menu]  = useMenu();
     const popularMenu = menu?.filter(item => item.category === "popular");
 
     return (

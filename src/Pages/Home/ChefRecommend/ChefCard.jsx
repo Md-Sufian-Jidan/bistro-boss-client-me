@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 
 const ChefCard = ({ item }) => {
     const { image, name, recipe } = item;
+    const handleAddToCart = (food) => {
+        console.log('add the item to db', food);
+    }
 
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
@@ -12,7 +15,7 @@ const ChefCard = ({ item }) => {
                 <h2 className="card-title">{name}</h2>
                 <p className="font-normal">{recipe}</p>
                 <div className="card-actions">
-                    <button className="btn btn-outline border-0 border-b-4 text-[#BB8506]">Add to Cart</button>
+                    <button onClick={() => handleAddToCart(item)} className="btn btn-outline border-0 border-b-4 text-[#BB8506]">Add to Cart</button>
                 </div>
             </div>
         </div>

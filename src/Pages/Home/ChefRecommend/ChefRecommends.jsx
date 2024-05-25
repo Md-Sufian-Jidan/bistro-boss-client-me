@@ -3,7 +3,7 @@ import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 import ChefCard from "./ChefCard";
 
 const ChefRecommends = () => {
-    const { menu } = useMenu();
+    const [menu]  = useMenu();
     const chefsRecommends = menu?.filter(recommend => recommend.category === "popular")
     return (
         <div className="my-5">
