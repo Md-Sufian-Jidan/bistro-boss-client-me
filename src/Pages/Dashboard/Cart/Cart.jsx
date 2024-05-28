@@ -1,10 +1,40 @@
 import { FaTrashAlt } from "react-icons/fa";
 import useCart from "../../../Hooks/useCart";
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const Cart = () => {
-    const [carts] = useCart();
+    const axiosSecure = useAxiosSecure();
+    const [carts, refetch] = useCart();
     const totalPrice = carts.reduce((acc, item) => (acc + item.price), 0)
     // console.log(totalPrice);
+
+    // handle delete cart from db
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/carts/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your cart is deleted.",
+                                icon: "success"
+                            });
+                            refetch();
+                        }
+                    })
+            }
+        });
+    };
     return (
         <div>
             <div className="flex justify-around items-center">
@@ -44,7 +74,7 @@ const Cart = () => {
                                     </td>
                                     <td>{item?.price}</td>
                                     <th>
-                                        <button className="btn btn-ghost">
+                                        <button onClick={() => handleDelete(item._id)} className="btn btn-ghost text-red-500">
                                             <FaTrashAlt size={16} />
                                         </button>
                                     </th>

@@ -50,7 +50,7 @@ const router = createBrowserRouter([
             // /dashboard/my-cart
             {
                 // index: true,
-                path: '/dashboard/my-cart',
+                path: 'cart',
                 element: <Cart />
             }
         ]

@@ -1,9 +1,10 @@
 import { Helmet } from "react-helmet";
 import { FaAddressBook, FaCalendarAlt, FaGetPocket, FaHome, FaShoppingCart } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import useCart from "../Hooks/useCart";
 
 const Dashboard = () => {
-    // const {user} = useau
+    const [carts] = useCart();
     return (
         <>
             <Helmet>
@@ -17,7 +18,7 @@ const Dashboard = () => {
                             <NavLink to="/dashboard/user-home"><FaHome size={20} />User Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/dashboard/my-cart" end><FaShoppingCart size={20} />My Cart</NavLink>
+                            <NavLink to="/dashboard/cart"><FaShoppingCart size={20} />My Cart ({carts?.length})</NavLink>
                         </li>
                         <li>
                             <NavLink to="/dashboard/reservation"><FaCalendarAlt size={20} />Reservation</NavLink>
