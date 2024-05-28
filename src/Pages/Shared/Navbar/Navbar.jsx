@@ -19,13 +19,13 @@ const Navbar = () => {
             });
     };
     const navLinks = <>
-        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2" : "p-3 mr-2"} to="/">Home</NavLink>
+        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to="/">Home</NavLink>
         {/* TODO: CREATE THIS ROUTE AND ADD IN HOME PAGE */}
-        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2" : "p-3 mr-2"} to="/dashboard">Dashboard</NavLink>
-        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2" : "p-3 mr-2"} to="/contact">Contact</NavLink>
-        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2" : "p-3 mr-2"} to="/menu">Our Menu</NavLink>
-        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2" : "p-3 mr-2"} to="/shop/salad">Our shop</NavLink>
-        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2" : "p-3 mr-2"} to="/dashboard">
+        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to="/dashboard">Dashboard</NavLink>
+        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to="/contact">Contact</NavLink>
+        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to="/menu">Our Menu</NavLink>
+        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to="/shop/salad">Our shop</NavLink>
+        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to="/dashboard">
             <button className="flex items-center">
                 <FaCartArrowDown size={20} />
                 <div className="badge badge-outline bg-[#ffadad]">+{carts?.length}</div>
@@ -34,7 +34,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="navbar fixed bg-opacity-50 rounded-b-xl max-w-7xl z-50 mx-auto bg-purple-300">
+        <div className="navbar fixed bg-opacity-50 rounded-b-xl max-w-7xl z-50 mx-auto bg-purple-400/70">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

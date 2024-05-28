@@ -9,15 +9,32 @@ const AllUsers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const { data } = await axiosSecure.get('/users')
+            const { data } = await axiosSecure.get('/users', {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('access-token')}`
+                }
+            })
             return data;
         }
     });
 
     // making a user admin 
     const handleMakeAdmin = (user) => {
-        console.log(user);
-    }
+        axiosSecure.patch(`/users/admin/${user._id}`)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        position: 'top-start',
+                        icon: 'success',
+                        title: `${user.name} is an Admin Now!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+        // console.log(user);
+    };
 
     // delete a user from db
     const handleDeleteUser = (id) => {
@@ -52,11 +69,11 @@ const AllUsers = () => {
                 <h2 className="text-5xl">Total Users : {users.length}</h2>
             </div>
             <div className="overflow-x-auto my-5">
-                <table className="table border-2">
+                <table className="table">
                     {/* head */}
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
@@ -72,9 +89,10 @@ const AllUsers = () => {
                                     <td>{item.name}</td>
                                     <td>{item.email}</td>
                                     <td>
-                                        <button onClick={() => handleMakeAdmin(item)} className="btn btn-circle hover:bg-orange-500 bg-orange-200">
-                                            <FaUser size={16} />
-                                        </button>
+                                        {item?.role === 'admin' ? <p className="font-bold">Admin</p> :
+                                            <button onClick={() => handleMakeAdmin(item)} className="btn btn-circle hover:bg-orange-500 bg-orange-200">
+                                                <FaUser size={16} />
+                                            </button>}
                                     </td>
                                     <td>
                                         <button onClick={() => handleDeleteUser(item._id)} className="btn btn-ghost text-red-500">

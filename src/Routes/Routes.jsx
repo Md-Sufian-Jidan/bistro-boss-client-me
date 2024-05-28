@@ -10,6 +10,9 @@ import Contact from "../Pages/Contact/Contact";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../Pages/Dashboard/Cart/Cart";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import AddItems from "../Pages/Dashboard/AddItems/AddItems";
+import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
+import ManageItems from "../Pages/Dashboard/ManageItems/ManageItems";
 // import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
@@ -59,7 +62,19 @@ const router = createBrowserRouter([
             {
                 path: 'all-users',
                 element: <AllUsers />
-            }
+            },
+            {
+                path: 'add-items',
+                element: <AddItems />
+            },
+            {
+                path: 'admin-home',
+                element: <AdminHome />
+            },
+            {
+                path: 'manage-items',
+                element: <ManageItems />
+            },
         ]
     }
 ])

@@ -16,7 +16,6 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password);
     };
     // after creating a user by email and password update it's name and photo url
-    // photo &&  photoURL: photo
     const updateUserProfile = (name, photo) => {
         return updateProfile(auth.currentUser, {
             displayName: name,
@@ -40,12 +39,12 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return signInWithPopup(auth, githubProvider);
     };
-
     // login user by google
     const logout = () => {
         setLoading(true);
         return signOut(auth);
     };
+    
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
@@ -62,7 +61,7 @@ const AuthProvider = ({ children }) => {
                     })
             }
             else {
-                console.log('else block', currentUser);
+                console.log('current user ', currentUser);
                 localStorage.removeItem('access-token');
                 setLoading(false);
             }
