@@ -9,7 +9,7 @@ import { Helmet } from 'react-helmet';
 
 const SignUp = () => {
     const { createUser, updateUserProfile } = useAuth();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const onSubmit = async (data) => {
@@ -22,12 +22,12 @@ const SignUp = () => {
         console.log(img_url);
         createUser(email, password)
             .then((res) => {
-
                 console.log(res);
                 updateUserProfile(name, img_url)
                     .then((res) => {
                         console.log(res);
                         toast.success('User Created Successfully');
+                        navigate('/');
                         reset();
                     })
                     .catch(err => {

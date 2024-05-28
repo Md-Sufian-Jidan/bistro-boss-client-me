@@ -6,10 +6,11 @@ import { useForm } from 'react-hook-form';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import SocialIcon from '../../../Component/SocialIcon/SocialIcon';
 
 
 const Login = () => {
-    const { loginUser, googleLoginUser, githubLoginUser } = useAuth();
+    const { loginUser } = useAuth();
     const navigate = useNavigate();
     const [disabled, setDisabled] = useState(true);
     const location = useLocation();
@@ -39,28 +40,7 @@ const Login = () => {
                 console.log(err);
             });
     };
-    // google login 
-    const handleGoogleLogin = () => {
-        googleLoginUser()
-            .then(() => {
-                toast.success("User login Successfully");
-                navigate('/' || from); // fix this before deploying your project
-            })
-            .catch((err) => {
-                toast.error(err.message);
-            });
-    };
-    // github login
-    const handleGithubLogin = () => {
-        githubLoginUser()
-            .then(() => {
-                toast.success("User login Successfully");
-                navigate('/' || from); // fix this before deploying your project
-            })
-            .catch((err) => {
-                toast.error(err.message);
-            });
-    };
+
     const handleValidate = (e) => {
         const user_captcha_value = e.target.value;
         if (validateCaptcha(user_captcha_value) == true) {
@@ -111,10 +91,9 @@ const Login = () => {
                                 <button disabled={disabled} className="btn btn-outline bg-[#40cbfa]">Login</button>
                             </div>
                         </form>
-                        <div className="divider mx-10">or</div>
-                        <div className='flex flex-col justify-center items-center gap-5 mx-5'>
-                            <button onClick={handleGoogleLogin} className='btn btn-outline btn-success w-full'>Google</button>
-                            <button onClick={handleGithubLogin} className='btn btn-outline  w-full'>Github</button>
+                        <div className="divider mx-10">or login with social</div>
+                        <div >
+                            <SocialIcon />
                         </div>
                         <p className='text-center my-3'>New User? <Link to="/sign-up" className="underline">Create a Account</Link></p>
                     </div>
