@@ -5,13 +5,16 @@ import useAuth from '../../../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import { imageUpload } from '../../../Utils/imgUpload';
 import { Helmet } from 'react-helmet';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 // import sign from '../../../assets/others/authentication1.png'
 
 const SignUp = () => {
-    const { createUser, updateUserProfile } = useAuth();
+    const axiosPublic = useAxiosPublic();
+    const { createUser, updateUserProfile, } = useAuth();
     const navigate = useNavigate();
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm()
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
     const onSubmit = async (data) => {
         const name = data.name;
         const email = data.email;
@@ -22,14 +25,24 @@ const SignUp = () => {
         console.log(img_url);
         createUser(email, password)
             .then((res) => {
-                console.log(res);
+                console.log(res.user);
+                // TODO : save a user data in db
+                const userInfo = {
+                    email: res?.user?.email,
+                    name: res?.user?.displayName,
+                };
+
+                axiosPublic.post('/users', userInfo)
+                    .then((res) => {
+                        console.log(res.data);
+                    })
                 updateUserProfile(name, img_url)
                     .then((res) => {
                         console.log(res);
+                        navigate('/'); // fix this before deploying your project
                         toast.success('User Created Successfully');
-                        navigate('/');
-                        reset();
                     })
+
                     .catch(err => {
                         toast.error(`${err.message}`)
                         console.log(err);

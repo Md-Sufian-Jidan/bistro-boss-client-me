@@ -15,8 +15,8 @@ const Login = () => {
     const [disabled, setDisabled] = useState(true);
     const location = useLocation();
     console.log(location);
-    const from = location?.state?.from?.pathname;
-    console.log(from);
+    // const from = location?.state?.from?.pathname;
+    // console.log(from);
 
     // captcha 
     useEffect(() => {
@@ -33,7 +33,7 @@ const Login = () => {
             .then((res) => {
                 console.log(res);
                 toast.success('User Login Successfully');
-                navigate('/' || from); // fix this before deploying your project
+                navigate('/'); // fix this before deploying your project
             })
             .catch((err) => {
                 toast.error(err.message);

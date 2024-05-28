@@ -14,21 +14,18 @@ const SocialIcon = () => {
     // google login 
     const handleGoogleLogin = () => {
         googleLoginUser()
-            .then(() => {
+            .then((res) => {
                 const userInfo = {
-                    email: user?.email,
-                    name: user?.displayName,
+                    email: res.user?.email,
+                    name: res.user?.displayName,
                 };
 
                 axiosPublic.post('/users', userInfo)
                     .then((res) => {
                         console.log(res.data);
-                        navigate('/')
+                        navigate('/' || from); // fix this before deploying your project
+                        toast.success("User login Successfully");
                     })
-
-
-                toast.success("User login Successfully");
-                navigate('/' || from); // fix this before deploying your project
             })
             .catch((err) => {
                 toast.error(err.message);

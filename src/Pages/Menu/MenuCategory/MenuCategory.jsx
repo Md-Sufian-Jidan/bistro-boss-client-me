@@ -28,6 +28,6 @@ MenuCategory.propTypes = {
     img: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
-    items: PropTypes.object,
+    items: PropTypes.array,
 }
 export default MenuCategory;
