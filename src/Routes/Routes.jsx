@@ -44,13 +44,13 @@ const router = createBrowserRouter([
         element: <Login />
     },
     {
-        path: 'dashboard',
+        path: '/dashboard',
         element: <Dashboard />,
         children: [
             // /dashboard/my-cart
             {
                 // index: true,
-                path: 'my-cart',
+                path: '/dashboard/my-cart',
                 element: <Cart />
             }
         ]

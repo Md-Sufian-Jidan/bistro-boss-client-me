@@ -13,12 +13,14 @@ const Login = () => {
     const navigate = useNavigate();
     const [disabled, setDisabled] = useState(true);
     const location = useLocation();
-    const from = location.pathname || '/';
+    console.log(location);
+    const from = location?.state?.from?.pathname;
+    console.log(from);
 
     // captcha 
     useEffect(() => {
         loadCaptchaEnginge(6);
-    },[]);
+    }, []);
 
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
@@ -30,7 +32,7 @@ const Login = () => {
             .then((res) => {
                 console.log(res);
                 toast.success('User Login Successfully');
-                navigate(from);
+                navigate('/' || from); // fix this before deploying your project
             })
             .catch((err) => {
                 toast.error(err.message);
@@ -42,7 +44,7 @@ const Login = () => {
         googleLoginUser()
             .then(() => {
                 toast.success("User login Successfully");
-                navigate(from);
+                navigate('/' || from); // fix this before deploying your project
             })
             .catch((err) => {
                 toast.error(err.message);
@@ -53,7 +55,7 @@ const Login = () => {
         githubLoginUser()
             .then(() => {
                 toast.success("User login Successfully");
-                navigate(from);
+                navigate('/' || from); // fix this before deploying your project
             })
             .catch((err) => {
                 toast.error(err.message);

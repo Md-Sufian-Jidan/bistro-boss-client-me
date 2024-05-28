@@ -13,6 +13,7 @@ const ChefCard = ({ item }) => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
+    
     const handleAddToCart = () => {
         // console.log('add the item to db', food);
         if (user && user.email) {

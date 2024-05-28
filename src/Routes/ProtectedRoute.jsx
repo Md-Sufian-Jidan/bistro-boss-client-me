@@ -8,7 +8,8 @@ const ProtectedRoute = ({ children }) => {
     if (loading) return <p className="my-20 mx-auto text-5xl">Wait page is loading...</p>
 
     if (user) return children;
-    return <Navigate to="/" state={{ from: location }} replace></Navigate>
+
+    return <Navigate to="/login" state={{from: location}} replace={true} ></Navigate>
 
 };
 ProtectedRoute.propTypes = {

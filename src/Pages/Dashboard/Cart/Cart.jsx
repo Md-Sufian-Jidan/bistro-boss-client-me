@@ -17,6 +17,7 @@ const Cart = () => {
                     {/* head */}
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Item Image</th>
                             <th>Item Name</th>
                             <th>Price</th>
@@ -26,8 +27,9 @@ const Cart = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            carts?.map((item) => (
+                            carts?.map((item, idx) => (
                                 <tr key={item._id}>
+                                    <td>{idx + 1}</td>
                                     <td>
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">
