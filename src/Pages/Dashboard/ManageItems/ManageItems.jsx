@@ -13,7 +13,12 @@ const ManageItems = () => {
             return data;
         },
     });
-    console.log(menus);
+    // console.log(menus);
+    // update a menu 
+    const handleUpdate = () => {
+        console.log('update');
+    }
+    // delete a menu 
     const handleDeleteMenu = (food) => {
         Swal.fire({
             title: "Are you sure?",
@@ -42,7 +47,7 @@ const ManageItems = () => {
 
     return (
         <div>
-            <h2>manage items</h2>
+            {/* <h2>manage items</h2> */}
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -76,7 +81,7 @@ const ManageItems = () => {
                                     </td>
                                     <td>{menu?.price}</td>
                                     <th>
-                                        <FaEdit />
+                                        <button onClick={() => handleUpdate()} className="btn btn-ghost"><FaEdit size={16} /></button>
                                     </th>
                                     <th>
                                         <button onClick={() => handleDeleteMenu(menu)} className="btn btn-ghost text-red-500">
