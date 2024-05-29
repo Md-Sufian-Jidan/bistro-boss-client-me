@@ -2,6 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
+import UpdateMenuItems from "./UpdateMenuItem";
+import { useState } from "react";
+import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 
 const ManageItems = () => {
     const axiosSecure = useAxiosSecure();
@@ -13,11 +16,19 @@ const ManageItems = () => {
             return data;
         },
     });
-    // console.log(menus);
+
+    // update modal 
+    const [isOpen, setIsOpen] = useState(false);
+    const [singleMenu, setSingleMenu] = useState(null);
+
     // update a menu 
-    const handleUpdate = () => {
-        console.log('update');
-    }
+    const handleUpdate = (food) => {
+        // console.log('update');
+        setIsOpen(true);
+        setSingleMenu(food);
+    };
+
+
     // delete a menu 
     const handleDeleteMenu = (food) => {
         Swal.fire({
@@ -48,6 +59,7 @@ const ManageItems = () => {
     return (
         <div>
             {/* <h2>manage items</h2> */}
+            <SectionTitle subHeading="title" heading="Manage Items" />
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -81,7 +93,7 @@ const ManageItems = () => {
                                     </td>
                                     <td>{menu?.price}</td>
                                     <th>
-                                        <button onClick={() => handleUpdate()} className="btn btn-ghost"><FaEdit size={16} /></button>
+                                        <button onClick={() => handleUpdate(menu)} className="btn btn-ghost"><FaEdit size={16} /></button>
                                     </th>
                                     <th>
                                         <button onClick={() => handleDeleteMenu(menu)} className="btn btn-ghost text-red-500">
@@ -92,6 +104,9 @@ const ManageItems = () => {
                         }
                     </tbody>
                 </table>
+                {/* update manage menu item */}
+                {singleMenu && <UpdateMenuItems isOpen={isOpen} setIsEditModalOpen={setIsOpen} food={singleMenu}
+                    setSingleMenu={setSingleMenu} />}
             </div>
         </div>
     );

@@ -69,19 +69,19 @@ const router = createBrowserRouter([
             // admin routes
             {
                 path: 'all-users',
-                element: <AdminRoute><AllUsers /></AdminRoute>
+                element: <ProtectedRoute><AdminRoute><AllUsers /></AdminRoute></ProtectedRoute>
             },
             {
                 path: 'add-items',
-                element: <AdminRoute><AddItems /></AdminRoute>
+                element: <ProtectedRoute><AdminRoute><AddItems /></AdminRoute></ProtectedRoute>
             },
             {
                 path: 'admin-home',
-                element: <AdminRoute><AdminHome /></AdminRoute>
+                element: <ProtectedRoute><AdminRoute><AdminHome /></AdminRoute></ProtectedRoute>
             },
             {
                 path: 'manage-items',
-                element: <AdminRoute><ManageItems /></AdminRoute>
+                element: <ProtectedRoute><AdminRoute><ManageItems /></AdminRoute></ProtectedRoute>
             },
         ]
     }
