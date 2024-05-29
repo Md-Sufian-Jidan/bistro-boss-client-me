@@ -13,6 +13,9 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AddItems from "../Pages/Dashboard/AddItems/AddItems";
 import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import ManageItems from "../Pages/Dashboard/ManageItems/ManageItems";
+import UserHome from "../Pages/Dashboard/NormalUser/UserHome/UserHome";
+import ProtectedRoute from "./ProtectedRoute";
+import AdminRoute from "./AdminRoute";
 // import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
@@ -49,31 +52,36 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard />,
+        element: <ProtectedRoute><Dashboard /></ProtectedRoute>,
         children: [
             {
                 // index: true,
                 path: 'cart',
-                element: <Cart />
+                element: <ProtectedRoute><Cart /></ProtectedRoute>
+            },
+            // normal user route
+            {
+                path: '/dashboard/user-home',
+                element: <ProtectedRoute><UserHome /></ProtectedRoute>
             },
 
 
             // admin routes
             {
                 path: 'all-users',
-                element: <AllUsers />
+                element: <AdminRoute><AllUsers /></AdminRoute>
             },
             {
                 path: 'add-items',
-                element: <AddItems />
+                element: <AdminRoute><AddItems /></AdminRoute>
             },
             {
                 path: 'admin-home',
-                element: <AdminHome />
+                element: <AdminRoute><AdminHome /></AdminRoute>
             },
             {
                 path: 'manage-items',
-                element: <ManageItems />
+                element: <AdminRoute><ManageItems /></AdminRoute>
             },
         ]
     }

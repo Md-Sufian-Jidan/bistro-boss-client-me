@@ -2,12 +2,13 @@ import { Helmet } from "react-helmet";
 import { FaAddressBook, FaCalendarAlt, FaGetPocket, FaHome, FaList, FaSearchPlus, FaShoppingCart, FaUtensils } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../Hooks/useCart";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
     const [carts] = useCart();
+    const [isAdmin] = useAdmin();
 
-    //TODO: get is admin value from data base
-    const isAdmin = true;
+    console.log(isAdmin);
 
     return (
         <>
@@ -20,51 +21,55 @@ const Dashboard = () => {
                     {isAdmin ?
                         <ul className="menu">
                             <li>
-                                <NavLink  to="/dashboard/admin-home"><FaShoppingCart size={20} />Admin Home</NavLink>
+                                <NavLink className={({ isActive }) => isActive ? "bg-blue-500" : "hover:bg-blue-200 hover:scale-105"} to="/dashboard/admin-home"><FaShoppingCart size={20} />Admin Home</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/add-items"><FaUtensils size={20} />Add Items</NavLink>
+                                <NavLink className={({ isActive }) => isActive ? "bg-blue-500" : "hover:bg-blue-200 hover:scale-105"} to="/dashboard/add-items"><FaUtensils size={20} />Add Items</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/manage-items"><FaList size={20} />Manage Items</NavLink>
+                                <NavLink className={({ isActive }) => isActive ? "bg-blue-500" : "hover:bg-blue-200 hover:scale-105"} to="/dashboard/manage-items"><FaList size={20} />Manage Items</NavLink>
                             </li>
                             <li>
-                                <NavLink className={({ isActive }) => isActive ? "bg-blue-500/50" : ""} to="/dashboard/all-users"><FaAddressBook size={20} />All Users</NavLink>
-                            </li>
-                            {/* shared navLinks */}
-                            <div className="divider"></div>
-                            <li>
-                                <NavLink to="/"><FaHome size={20} />Home</NavLink>
+                                <NavLink className={({ isActive }) => isActive ? "bg-blue-500" : "hover:bg-blue-200 hover:scale-105"} to="/dashboard/all-users"><FaAddressBook size={20} />All Users</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/menu"><FaSearchPlus size={20} />Menu</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/order/salad"><FaGetPocket size={20} />order</NavLink>
-                            </li>
-                        </ul> : <ul className="menu">
-                            <li>
-                                <NavLink to="/dashboard/user-home"><FaHome size={20} />User Home</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/cart"><FaShoppingCart size={20} />My Cart ({carts?.length})</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/reservation"><FaCalendarAlt size={20} />Reservation</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/reviews"><FaAddressBook size={20} />Reviews</NavLink>
+                                <NavLink className={({ isActive }) => isActive ? "bg-blue-500" : "hover:bg-blue-200 hover:scale-105"} to="/dashboard/cart"><FaShoppingCart size={20} />My Cart ({carts?.length})</NavLink>
                             </li>
                             {/* shared navLinks */}
                             <div className="divider"></div>
                             <li>
-                                <NavLink to="/"><FaHome size={20} />Home</NavLink>
+                                <NavLink className={({ isActive }) => isActive ? "bg-blue-500" : "hover:bg-blue-200 hover:scale-105"} to="/"><FaHome size={20} />Home</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/menu"><FaSearchPlus size={20} />Menu</NavLink>
+                                <NavLink className={({ isActive }) => isActive ? "bg-blue-500" : "hover:bg-blue-200 hover:scale-105"} to="/menu"><FaSearchPlus size={20} />Menu</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/order/salad"><FaGetPocket size={20} />order</NavLink>
+                                <NavLink className={({ isActive }) => isActive ? "bg-blue-500" : "hover:bg-blue-200 hover:scale-105"} to="/order/salad"><FaGetPocket size={20} />order</NavLink>
+                            </li>
+                        </ul> :
+                        <ul className="menu">
+                            <li>
+                                <NavLink className={({ isActive }) => isActive ? "bg-blue-500" : "hover:bg-blue-200 hover:scale-105"} to="/dashboard/user-home"><FaHome size={20} />User Home</NavLink>
+                            </li>
+                            <li>
+                                <NavLink className={({ isActive }) => isActive ? "bg-blue-500" : "hover:bg-blue-200 hover:scale-105"} to="/dashboard/cart"><FaShoppingCart size={20} />My Cart ({carts?.length})</NavLink>
+                            </li>
+                            <li>
+                                <NavLink className={({ isActive }) => isActive ? "bg-blue-500" : "hover:bg-blue-200 hover:scale-105"} to="/dashboard/reservation"><FaCalendarAlt size={20} />Reservation</NavLink>
+                            </li>
+                            <li>
+                                <NavLink className={({ isActive }) => isActive ? "bg-blue-500" : "hover:bg-blue-200 hover:scale-105"} to="/dashboard/reviews"><FaAddressBook size={20} />Reviews</NavLink>
+                            </li>
+                            {/* shared navLinks */}
+                            <div className="divider"></div>
+                            <li>
+                                <NavLink className={({ isActive }) => isActive ? "bg-blue-500" : "hover:bg-blue-200 hover:scale-105"} to="/"><FaHome size={20} />Home</NavLink>
+                            </li>
+                            <li>
+                                <NavLink className={({ isActive }) => isActive ? "bg-blue-500" : "hover:bg-blue-200 hover:scale-105"} to="/menu"><FaSearchPlus size={20} />Menu</NavLink>
+                            </li>
+                            <li>
+                                <NavLink className={({ isActive }) => isActive ? "bg-blue-500" : "hover:bg-blue-200 hover:scale-105"} to="/order/salad"><FaGetPocket size={20} />order</NavLink>
                             </li>
                         </ul>}
                 </div>

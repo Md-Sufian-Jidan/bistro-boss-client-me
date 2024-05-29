@@ -4,29 +4,33 @@ import toast from "react-hot-toast";
 import profile from '../../../assets/others/profile.png'
 import { FaCartArrowDown } from "react-icons/fa";
 import useCart from "../../../Hooks/useCart";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const Navbar = () => {
-    const [carts] = useCart();
+    const [carts, refetch] = useCart();
+    const [isAdmin] = useAdmin();
     // console.log(carts);
     const { user, logout } = useAuth();
     const handleLogout = () => {
         logout()
             .then(() => {
+                refetch();
                 localStorage.removeItem('access-token');
                 toast.success('User logout successfully');
             })
             .catch((err) => {
                 toast.error(err.message);
+                refetch();
             });
     };
     const navLinks = <>
         <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to="/">Home</NavLink>
         {/* TODO: CREATE THIS ROUTE AND ADD IN HOME PAGE */}
-        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to="/dashboard">Dashboard</NavLink>
+        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to={`${isAdmin ? '/dashboard/admin-home' : '/dashboard/cart'}`} >Dashboard</NavLink>
         <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to="/contact">Contact</NavLink>
         <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to="/menu">Our Menu</NavLink>
         <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to="/shop/salad">Our shop</NavLink>
-        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to="/dashboard">
+        <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to={`${isAdmin ? '/dashboard/admin-home' : '/dashboard/cart'}`}>
             <button className="flex items-center">
                 <FaCartArrowDown size={20} />
                 <div className="badge badge-outline bg-[#ffadad]">+{carts?.length}</div>
