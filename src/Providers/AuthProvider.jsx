@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return signOut(auth);
     };
-    
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
@@ -55,6 +55,7 @@ const AuthProvider = ({ children }) => {
                     .then(res => {
                         if (res.data.token) {
                             localStorage.setItem('access-token', res.data.token);
+                            console.log(res.data.token);
                             setLoading(false);
                         }
 
@@ -67,9 +68,9 @@ const AuthProvider = ({ children }) => {
             }
         });
         return () => {
-            unsubscribe()
+            return unsubscribe();
         }
-    })
+    }, [axiosPublic]);
 
     const authInfo = { user, loading, createUser, updateUserProfile, loginUser, googleLoginUser, githubLoginUser, logout };
     return (
