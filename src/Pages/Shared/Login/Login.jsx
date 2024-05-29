@@ -7,6 +7,7 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import SocialIcon from '../../../Component/SocialIcon/SocialIcon';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 
 const Login = () => {
@@ -14,6 +15,7 @@ const Login = () => {
     const navigate = useNavigate();
     const [disabled, setDisabled] = useState(true);
     const location = useLocation();
+    const axiosPublic = useAxiosPublic();
     console.log(location);
     // const from = location?.state?.from?.pathname;
     // console.log(from);
@@ -31,9 +33,16 @@ const Login = () => {
         // console.log(password, email);
         loginUser(email, password)
             .then((res) => {
-                console.log(res);
-                toast.success('User Login Successfully');
-                navigate('/'); // fix this before deploying your project
+                const userInfo = {
+                    email: res.user?.email,
+                    name: res.user?.displayName,
+                };
+                axiosPublic.post('/users', userInfo)
+                    .then((res) => {
+                        console.log(res.data);
+                        navigate('/'); // fix this before deploying your project
+                        toast.success("User login Successfully");
+                    })
             })
             .catch((err) => {
                 toast.error(err.message);
