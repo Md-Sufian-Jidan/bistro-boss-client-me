@@ -199,4 +199,4 @@ UpdateMenuItems.propTypes = {
     setSingleMenu: PropTypes.object,
 }
 
-export default UpdateMenuItems
+export default UpdateMenuItems;

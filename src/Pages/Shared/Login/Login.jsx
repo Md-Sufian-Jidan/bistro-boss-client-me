@@ -16,7 +16,7 @@ const Login = () => {
     const [disabled, setDisabled] = useState(true);
     const location = useLocation();
     const axiosPublic = useAxiosPublic();
-    console.log(location);
+    console.log(location?.state);
     // const from = location?.state?.from?.pathname;
     // console.log(from);
 

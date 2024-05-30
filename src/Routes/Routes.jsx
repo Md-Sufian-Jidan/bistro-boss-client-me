@@ -16,6 +16,7 @@ import ManageItems from "../Pages/Dashboard/ManageItems/ManageItems";
 import UserHome from "../Pages/Dashboard/NormalUser/UserHome/UserHome";
 import ProtectedRoute from "./ProtectedRoute";
 import AdminRoute from "./AdminRoute";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 // import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/user-home',
                 element: <ProtectedRoute><UserHome /></ProtectedRoute>
+            },
+            {
+                path:'/dashboard/payment',
+                element: <ProtectedRoute><Payment /></ProtectedRoute>
             },
 
 

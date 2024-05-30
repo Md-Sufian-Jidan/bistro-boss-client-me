@@ -2,6 +2,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import useCart from "../../../Hooks/useCart";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
     const axiosSecure = useAxiosSecure();
@@ -35,13 +36,19 @@ const Cart = () => {
             }
         });
     };
-    
+
     return (
         <div>
             <div className="flex justify-around items-center">
                 <h2 className="text-4xl">my cart</h2>
                 <p className="text-4xl">Total Price : ${totalPrice}</p>
-                <button className="btn btn-outline bg-[#f1e07c]">Pay</button>
+                {
+                    carts?.length > 0 ?
+                        <Link to="/dashboard/payment">
+                            <button className="btn btn-outline bg-[#f1e07c]">Pay</button>
+                        </Link> :
+                        <button disabled={!carts.length} className="btn btn-outline bg-[#f1e07c]">Pay</button>
+                }
             </div>
             <div className="overflow-x-auto mt-10">
                 <table className="table">
