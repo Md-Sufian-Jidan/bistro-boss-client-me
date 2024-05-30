@@ -7,15 +7,15 @@ import CheckOutFrom from "./CheckOutFrom";
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_GATEWAY);
 
 const Payment = () => {
+
     return (
         <div>
-            <SectionTitle heading="Payment" subHeading="Please Eat To Eat" />
+            <SectionTitle heading="Payment" subHeading="Please Eat To pay" />
             <div>
                 <Elements stripe={stripePromise}>
                     <CheckOutFrom />
                 </Elements>
             </div>
-
         </div>
     );
 };
